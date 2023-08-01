@@ -26,7 +26,7 @@ void createGraph(int n){
 	}
 }
 
-void dfs(int parent,int start)
+void dfs(int n,int parent,int start)
 {
 	visited[start]=1;
 	count++;
@@ -35,17 +35,17 @@ void dfs(int parent,int start)
 	for(int i=0;i<n;i++)
 	{
 		fin++;
-		if(i!=parent && graph[start][i] && visited[i] && path[i] && D) //path is for directed
+		if(D && i!=parent && graph[start][i] && visited[i] && path[i]) //path is for directed
 		{
 			isCyclic=1;
 		}
-		if(i!=parent && graph[start][i] && visited[i] && !D) //path is for directed
+		if(!D && i!=parent && graph[start][i] && visited[i]) //path is for directed
 		{
 			isCyclic=1;
 		}
 		if(graph[start][i] && !visited[i])
 		{
-			dfs(start,i);
+			dfs(n,start,i);
 		}
 	}
 	path[start]=0;
@@ -78,32 +78,31 @@ void main()
 	FILE *b=fopen("dfs.txt","w");
 		for(int n=2;n<=15;n++)
 		{
-		isCyclic=0;
-		cnt=0;
-		fin=0;
-		count=0;
-		createGraph(n);
-		dfs(-1,0);
-		for(int i=0;i<n;i++)
-			{
-				if(!visited[i]) 
+			isCyclic=0;
+			cnt=0;
+			fin=0;
+			count=0;
+			createGraph(n);
+			dfs(n,-1,0);
+			for(int i=0;i<n;i++)
 				{
-				dfs(-1,i);
+					if(!visited[i]) 
+					{
+					dfs(n,-1,i);
+					}
 				}
-			}
-		printf("%d\n",fin);
-		fprintf(b,"%d\t%d\n",n,fin);
+			printf("%d\n",fin);
+			fprintf(b,"%d\t%d\n",n,fin);
 		}
 }
 	
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
