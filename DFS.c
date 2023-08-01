@@ -56,7 +56,7 @@ void main()
 		/*createGraph();
   		printf("Enter 1 for directed and 0 for undirected\n");
     		scanf("%d",&D);
-		dfs(n,0);
+		dfs(n,-1,0);
 		printf("\n");
 		(isCyclic==1)?printf("It is Cyclic\n"):printf("Not cyclic\n");
 		if(count==n)
@@ -70,7 +70,7 @@ void main()
 			{
 				if(!visited[i]) 
 				{
-				dfs(n,i);
+				dfs(n,-1,i);
 				printf("\n");
 				}
 			}
