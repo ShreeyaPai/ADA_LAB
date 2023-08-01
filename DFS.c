@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int graph[25][25],visited[25],count,cnt=0,stack[25],path[25],fin,isCyclic=0,n;
+int graph[25][25],visited[25],count,cnt=0,stack[25],path[25],fin,isCyclic=0,n,D;
 
 /*void createGraph(){  //to get input from user and store it in graph matrix
 	int i,j;
@@ -35,7 +35,11 @@ void dfs(int parent,int start)
 	for(int i=0;i<n;i++)
 	{
 		fin++;
-		if(i!=p && graph[start][i] && visited[i] && path[i]) //path is for directed
+		if(i!=p && graph[start][i] && visited[i] && path[i] && D) //path is for directed
+		{
+			isCyclic=1;
+		}
+		if(i!=p && graph[start][i] && visited[i] && !D) //path is for directed
 		{
 			isCyclic=1;
 		}
@@ -50,6 +54,8 @@ void dfs(int parent,int start)
 void main()
 {
 		/*createGraph();
+  		printf("Enter 1 for directed and 0 for undirected\n");
+    		scanf("%d",&D);
 		dfs(n,0);
 		printf("\n");
 		(isCyclic==1)?printf("It is Cyclic\n"):printf("Not cyclic\n");
