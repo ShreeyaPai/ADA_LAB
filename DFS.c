@@ -35,11 +35,11 @@ void dfs(int parent,int start)
 	for(int i=0;i<n;i++)
 	{
 		fin++;
-		if(i!=p && graph[start][i] && visited[i] && path[i] && D) //path is for directed
+		if(i!=parent && graph[start][i] && visited[i] && path[i] && D) //path is for directed
 		{
 			isCyclic=1;
 		}
-		if(i!=p && graph[start][i] && visited[i] && !D) //path is for directed
+		if(i!=parent && graph[start][i] && visited[i] && !D) //path is for directed
 		{
 			isCyclic=1;
 		}
