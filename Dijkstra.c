@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<limits.h>
 
-int n,src,cost[10][10],d[10]={0},removed[10]={0},count=0,heapsize;
+int n,src,cost[10][10],d[10]={0},removed[10]={0},count=0,heapsize,heapcount,graphcount;
 
 typedef struct vertex
 {
@@ -19,6 +19,7 @@ void swap(ver* a,ver*b)
 
 void heapify(ver heap[],int n,int i)
 {
+	heapcount++;
 	int largest=i;
 	int left=2*i+1;
 	int right=2*i+2;
@@ -89,9 +90,10 @@ void dijkstra()
 		{
 			if(!removed[i] && cost[u][i]!=INT_MAX)
 			{
-				if((d[u]+cost[u][i]) < d[i])
+				graphcount++;
+				if(cost[u][i] < d[i])
 				{
-					d[i]=d[u]+cost[u][i];
+					d[i]=cost[u][i];
 					for(int o=0;o<heapsize;o++)
 					{
 						if(heap[o].id==i) 
@@ -111,10 +113,13 @@ void main()
 {
 	createGraph();
 	dijkstra();
-	
+	sum=0;
 	for(int i=0;i<n;i++)
 	{
-		if(i!=src)
-		printf("%d-->%d (%d)\n",src,i,d[i]);
+	printf("%d  ",d[i]);
+		sum+=d[i];
 	}
+	printf("%d",sum);
+	int fin=(heapcount>graphcount)?heapcount:graphcount;
+	printf("%d\n",fin);
 }
