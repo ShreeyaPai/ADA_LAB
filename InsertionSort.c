@@ -7,15 +7,14 @@ int insertionsort(int a[],int n)
 {
 	count=0;
 	int val,j;
-	for(int i=1;i<n;i++)
+	for(int i=0;i<n;i++)
 	{
 		val=a[i];
 		j=i-1;
-		while(count++ && val<a[j])
+		while(j>=0 && count++ && val<a[j])
 		{
 			a[j+1]=a[j];
 			j--;
-			if(j<0) break;
 		}
 		a[j+1]=val;
 	}
