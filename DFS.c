@@ -34,7 +34,7 @@ void dfs(int n,int parent,int start)
 	//printf("-->%c",start+65);
 	for(int i=0;i<n;i++)
 	{
-		fin++;
+		fin++; //final count for analysis
 		if(D && i!=parent && graph[start][i] && visited[i] && path[i]) //path is for directed
 		{
 			isCyclic=1;
