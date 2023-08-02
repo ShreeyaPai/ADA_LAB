@@ -33,7 +33,7 @@ void heapify(ver heap[],int n,int i)
 
 void heapsort(ver heap[],int heapsize)
 {
-	for(int i=n/2-1;i<=0;i--)
+	for(int i=n/2-1;i>=0;i--)
 		heapify(heap,n,i);
 }
 
@@ -42,7 +42,7 @@ ver getmin(ver heap[])
 	ver minvertex=heap[0];
 	heap[0]=heap[heapsize-1];
 	heapsize-=1;
-	heapify(heap,heapsize,0);
+	//heapify(heap,heapsize,0);
 	return minvertex;
 }
 
@@ -91,9 +91,9 @@ void dijkstra()
 			if(!removed[i] && cost[u][i]!=INT_MAX)
 			{
 				graphcount++;
-				if(cost[u][i] < d[i])
+				if((d[u]+cost[u][i]) < d[i])
 				{
-					d[i]=cost[u][i];
+					d[i]=(d[u]+cost[u][i]);
 					for(int o=0;o<heapsize;o++)
 					{
 						if(heap[o].id==i) 
@@ -102,10 +102,10 @@ void dijkstra()
 							break;
 						}
 					}
-					heapsort(heap,heapsize);
 				}
 			}
 		}
+		heapsort(heap,heapsize);
 	}
 }
 
@@ -113,13 +113,11 @@ void main()
 {
 	createGraph();
 	dijkstra();
-	sum=0;
 	for(int i=0;i<n;i++)
 	{
-	printf("%d  ",d[i]);
-		sum+=d[i];
+		if (src!=i)
+  	printf("%c -> %c = %d\n", src+65, i+65, d[i]);
 	}
-	printf("%d",sum);
 	int fin=(heapcount>graphcount)?heapcount:graphcount;
 	printf("%d\n",fin);
 }
