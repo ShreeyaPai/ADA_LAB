@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int graph[25][25],n;
-
+//Commented part is for analysis
 void createGraph(){  //to get input from user and store it in graph matrix
 	int i,j;
 	printf("Enter no. of vertices: ");
