@@ -38,11 +38,11 @@ void Transitive()
 
 void main()
 {
-	//createGraph(); //Use this for correctness
-	FILE *w=fopen("Warshall.txt","w");
-	for(int n=2;n<=11;n++)
-	{
-		generateGraph(n);
+	createGraph(); //Use this for correctness
+	//FILE *w=fopen("Warshall.txt","w");
+	//for(int n=2;n<=11;n++)
+	//{
+		//generateGraph(n);
 		int count=0;
 		for(int k=0;k<n;k++)
 		{
@@ -60,9 +60,9 @@ void main()
 			}
 		}
 		printf("%d\n",count);
-		fprintf(w,"%d\t%d\n",n,count);
-	}
-	//Transitive(); //Use this for correctness
+		//fprintf(w,"%d\t%d\n",n,count);
+	//}
+	Transitive(); //Use this for correctness
 }
 
 
